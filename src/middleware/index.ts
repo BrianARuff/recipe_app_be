@@ -4,7 +4,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 
 import authRouter from '../routes/authRoutes';
-import dashboardRouter from "../routes/dashboardRoute";
+import dashboardRouter from '../routes/dashboardRoute';
+import userRouter from '../routes/userRoute';
 
 export default (app: Express) => {
    app.use(helmet());
@@ -12,5 +13,6 @@ export default (app: Express) => {
    app.use(cors());
    app.use(express.json());
    app.use('/api/auth', authRouter);
-   app.use('/api/dashboard', dashboardRouter);
+   app.use('/api', dashboardRouter);
+   app.use('/api', userRouter);
 };
