@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.get('/users', auth as any, (req, res) => {
    database.query(
       'SELECT user_id, user_name, user_email, user_admin FROM users;',
-      (err, rows) => {
+      (err: Error, rows: any) => {
          if (err) {
             res.status(500).json({ err });
          } else {

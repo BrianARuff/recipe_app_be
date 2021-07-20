@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS RECIPES (
     recipe_updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     recipe_user_id UUID NOT NULL,
     FOREIGN KEY (recipe_user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
