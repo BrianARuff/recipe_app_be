@@ -7,22 +7,27 @@ function database(): Pool | undefined {
          ssl: { rejectUnauthorized: false },
       });
    } else {
-      return new Pool({
-         user: process.env.PG_USER,
-         password: process.env.PG_PASS,
-         host: process.env.PG_HOST,
-         port: process.env.PG_PORT as any,
-         database: process.env.PG_DB,
-         ssl: {
-            rejectUnauthorized: false,
-         },
-         max: 25,
-         idleTimeoutMillis: 30000,
-         connectionTimeoutMillis: 30000,
-      });
+      // return new Pool({
+      //    user: process.env.PG_USER,
+      //    password: process.env.PG_PASS,
+      //    host: process.env.PG_HOST,
+      //    port: process.env.PG_PORT as any,
+      //    database: process.env.PG_DB,
+      //    ssl: {
+      //       rejectUnauthorized: false,
+      //    },
+      //    max: 25,
+      //    idleTimeoutMillis: 30000,
+      //    connectionTimeoutMillis: 30000,
+      // });
    }
 }
 
-database()?.connect();
+const db = new Pool({
+   connectionString: process.env.DATABASE_URL,
+   ssl: { rejectUnauthorized: false },
+});
 
-export default database() as Pool;
+db.connect();
+
+export default db;
