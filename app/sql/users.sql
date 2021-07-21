@@ -12,8 +12,8 @@ $$ LANGUAGE plpgsql;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    user_name VARCHAR(255) NOT NULL,
-    user_email VARCHAR(255) NOT NULL,
+    user_name VARCHAR(255) NOT NULL UNIQUE,
+    user_email VARCHAR(255) NOT NULL UNIQUE,
     user_password VARCHAR(255) NOT NULL,
     user_created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     user_updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
